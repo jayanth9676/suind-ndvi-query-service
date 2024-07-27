@@ -17,7 +17,7 @@ class QueryData(BaseModel):
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to the NDVI Query Service"}
+    return "Welcome to the NDVI Query Service"
 
 # Define the POST endpoint /query_ndvi
 @app.post("/query_ndvi")
