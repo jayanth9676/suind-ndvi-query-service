@@ -22,10 +22,10 @@
             padding: 20px;
             margin: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
         h1 {
-            text-align: center;
             color: #007bff;
             margin-bottom: 20px;
         }
@@ -33,25 +33,33 @@
             display: block;
             margin-bottom: 5px;
             font-weight: 600;
+            color: #333;
         }
         input, button, textarea {
-            width: 100%;
+            width: calc(100% - 24px);
             padding: 12px;
             margin: 10px 0;
             border: 1px solid #ddd;
             border-radius: 6px;
             font-size: 16px;
+            box-sizing: border-box;
         }
         button {
-            background-color: #007bff;
+            background-color: #8115c8;
             color: white;
             border: none;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
             font-weight: 600;
+            margin-top: 10px;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #6e11a4;
+            transform: scale(1.05);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
         }
         pre {
             background: #f8f9fa;
@@ -60,6 +68,8 @@
             border-radius: 6px;
             overflow-x: auto;
             white-space: pre-wrap;
+            text-align: left;
+            margin: 20px 0;
         }
         .spinner {
             display: none;
@@ -78,19 +88,26 @@
         .buttons {
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .buttons a {
+            text-decoration: none;
         }
         .json-container {
             background: #f8f9fa;
             padding: 15px;
             border: 1px solid #ddd;
             border-radius: 6px;
+            text-align: left;
+            margin-top: 20px;
         }
         .key {
             font-weight: bold;
-            color: #333;
+            color: #007bff;
         }
         .value {
-            color: #555;
+            color: #8115c8;
         }
     </style>
 </head>
@@ -110,7 +127,9 @@
                 <button type="button" onclick="setDefaultGeoJSON()">Default AOI GeoJSON</button>
             </div>
             
-            <button type="submit">Get NDVI</button>
+            <div class="buttons">
+                <button type="submit">Get NDVI</button>
+            </div>
         </form>
         <div class="spinner" id="loading-spinner"></div>
         <pre id="response"></pre>

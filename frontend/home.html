@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
+            background-color: #f4f4f9;
             margin: 0;
             padding: 0;
             display: flex;
@@ -18,81 +18,105 @@
         }
         .container {
             background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             max-width: 800px;
-            width: 100%;
+            width: 90%;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 20px;
         }
         h1 {
-            color: #007bff;
+            font-size: 2.5em;
             margin-bottom: 20px;
-            font-size: 2rem;
+            color: #007bff;
         }
         h2 {
-            color: #333;
-            font-size: 1.5rem;
+            font-size: 1.8em;
+            color: #451cab;
             margin-top: 20px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         p {
-            color: #555;
-            font-size: 1rem;
+            font-size: 1.2em;
+            color: #000;
             line-height: 1.6;
-            margin: 0 0 20px;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+            margin: 0;
+        }
+        ul li {
+            font-size: 1.1em;
+            color: #4c27d3;
+            background-color: #f9f9f9;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        ul li:hover {
+            background-color: #e7e7ff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         button {
-            padding: 12px 24px;
+            padding: 12px 25px;
             font-size: 16px;
             color: #fff;
-            background-color: #007bff;
+            background-color: #8115c8;
             border: none;
             border-radius: 6px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s;
+            margin-top: 10px;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #6e11a4;
             transform: scale(1.05);
         }
-        .buttons {
+        a {
+            display: inline-block;
             margin-top: 20px;
-        }
-        .feature {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            margin: 10px 0;
-        }
-        .feature h3 {
-            margin-top: 0;
             color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: color 0.3s, text-decoration 0.2s;
+        }
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+        .buttons {
+            margin-bottom: 20px;
+        }
+        .buttons a {
+            margin: 0 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to the SUIND NDVI Query Service</h1>
-        <p>This FastAPI application allows users to query the NDVI (Normalized Difference Vegetation Index) for a given area and time period using Sentinel-2 satellite data from the Microsoft Planetary Computer.</p>
-        <h2>Features</h2>
-        <div class="feature">
-            <h3>Query Sentinel-2 Data</h3>
-            <p>Query Sentinel-2 data for a specific time range and geographical area.</p>
-        </div>
-        <div class="feature">
-            <h3>Calculate NDVI</h3>
-            <p>Calculate NDVI using the red and near-infrared (NIR) bands.</p>
-        </div>
-        <div class="feature">
-            <h3>Return NDVI Statistics</h3>
-            <p>Return NDVI statistics (mean and standard deviation) for the specified area.</p>
-        </div>
+        <h1>SUIND NDVI Query Service</h1>
         <div class="buttons">
             <a href="/frontend/index.html">
-                <button>Go to NDVI Query Form</button>
+                <button>Calculate NDVI Statistics</button>
+            </a>
+            <a href="/frontend/uses.html">
+                <button>Uses in Agriculture</button>
             </a>
         </div>
+        <p>This FastAPI application allows users to query the NDVI (Normalized Difference Vegetation Index) for a given area and time period using Sentinel-2 satellite data from the Microsoft Planetary Computer.</p>
+        
+        <h2>Features</h2>
+        <ul>
+            <li>Query Sentinel-2 data for a specific time range and geographical area.</li>
+            <li>Calculate NDVI using the red and near-infrared (NIR) bands.</li>
+            <li>Return NDVI statistics (mean and standard deviation) for the specified area.</li>
+        </ul>
     </div>
 </body>
 </html>
