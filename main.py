@@ -10,6 +10,9 @@ app = FastAPI()
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
+# Serve the static frontend files
+app.mount("/frontend", StaticFiles(directory="frontend"), name="frontend")
+
 # Define the schema for incoming request data using Pydantic
 class QueryData(BaseModel):
     timestamp: str = Field(..., example="2024-06-01/2024-07-01")
