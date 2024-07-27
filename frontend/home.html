@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NDVI Query Service</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        h2 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0 0 20px;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .feature {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .feature h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the SUIND NDVI Query Service</h1>
+        <p>This FastAPI application allows users to query the NDVI (Normalized Difference Vegetation Index) for a given area and time period using Sentinel-2 satellite data from the Microsoft Planetary Computer.</p>
+        <h2>Features</h2>
+        <div class="feature">
+            <h3>Query Sentinel-2 Data</h3>
+            <p>Query Sentinel-2 data for a specific time range and geographical area.</p>
+        </div>
+        <div class="feature">
+            <h3>Calculate NDVI</h3>
+            <p>Calculate NDVI using the red and near-infrared (NIR) bands.</p>
+        </div>
+        <div class="feature">
+            <h3>Return NDVI Statistics</h3>
+            <p>Return NDVI statistics (mean and standard deviation) for the specified area.</p>
+        </div>
+        <div class="buttons">
+            <a href="/frontend/index.html">
+                <button>Go to NDVI Query Form</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
