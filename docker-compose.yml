@@ -4,7 +4,5 @@ services:
   app:
     build: .
     ports:
-      - "8000:8000"
-      - "5500:5500"
-    environment:
-      - PYTHONUNBUFFERED=1
+      - "8000:8000"   # Backend
+      - "5500:5500"   # Frontend
