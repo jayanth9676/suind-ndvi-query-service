@@ -1,34 +1,29 @@
-# Use a multi-stage build to keep the final image small
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
 
-# Stage 1: Build the frontend
-FROM python:3.11-slim AS build-stage
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
 
+# Create and set the working directory
 WORKDIR /app
 
-# Copy frontend files
-COPY frontend/ /app/frontend/
+# Copy the backend files
+COPY main.py sentinel_query.py requirements.txt /app/
 
-# Install a lightweight HTTP server
-RUN pip install httpserver
-
-# Stage 2: Build the backend
-FROM python:3.11-slim AS runtime-stage
-
-WORKDIR /app
-
-# Copy backend files
-COPY main.py /app/
-COPY sentinel_query.py /app/
-COPY requirements.txt /app/
-
-# Install dependencies
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy frontend files from the build stage
-COPY --from=build-stage /app/frontend /app/frontend
+# Copy the frontend files
+COPY frontend /app/frontend
 
-# Expose port for FastAPI
+# Expose the port the app runs on
 EXPOSE 8000
 
-# Start both the backend and frontend servers
-CMD ["sh", "-c", "python -m uvicorn main:app --host 0.0.0.0 --port 8000 & python -m http.server --directory /app/frontend --bind 0.0.0.0 8080"]
+# Install an HTTP server to serve the frontend
+RUN apt-get update && apt-get install -y \
+    python3-venv \
+    && python3 -m venv /venv \
+    && /venv/bin/pip install --no-cache-dir http.server
+
+# Start both the backend and frontend server
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port 8000 & python3 -m http.server --directory /app/frontend 5500"]
