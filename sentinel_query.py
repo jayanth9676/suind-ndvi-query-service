@@ -8,7 +8,13 @@ from shapely.ops import transform  #  transform from shapely.ops for transformin
 import pyproj  #  pyproj for coordinate reference system (CRS) transformations
 import logging  #  logging for logging messages
 from datetime import datetime, timedelta
+from pydantic import BaseModel, Field, ValidationError
+from typing import Dict, Any
 
+class GeoJSONValidator(BaseModel):
+    type: str
+    coordinates: Any
+    
 # Function to query Sentinel-2 data URLs
 def query_sentinel_data(aoi_geojson, timestamp):
     catalog = pystac_client.Client.open(
@@ -23,6 +29,17 @@ def query_sentinel_data(aoi_geojson, timestamp):
         end_date = datetime.strptime(end_date, "%Y-%m-%d")
     except ValueError:
         raise ValueError("Invalid timestamp format. Use YYYY-MM-DD/YYYY-MM-DD.")
+
+    try:
+        # Validate AOI GeoJSON
+        GeoJSONValidator(**aoi_geojson)
+        logging.info("AOI GeoJSON is valid.")
+    except ValidationError as e:
+        logging.error("Invalid AOI GeoJSON: %s", str(e))
+        raise ValueError("Invalid AOI GeoJSON format.")
+
+    logging.info("AOI GeoJSON: %s", aoi_geojson)
+
 
     search = catalog.search(
         collections=["sentinel-2-l2a"],  # Search within the Sentinel-2 Level 2A collection
