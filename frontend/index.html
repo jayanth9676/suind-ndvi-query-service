@@ -62,7 +62,7 @@
             const aoiGeojson = JSON.parse(document.getElementById('aoi_geojson').value);
 
             try {
-                // const response = await fetch('http://localhost:8000/query_ndvi', {
+                 // const response = await fetch('http://localhost:8000/query_ndvi', {
                 const response = await fetch('https://suind-ndvi-query-service.onrender.com/query_ndvi', {
                     method: 'POST',
                     headers: {
