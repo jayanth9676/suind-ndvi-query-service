@@ -15,6 +15,10 @@ class QueryData(BaseModel):
     timestamp: str = Field(..., example="2024-06-01/2024-07-01")
     aoi_geojson: Dict[str, Any]
 
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the NDVI Query Service"}
+
 # Define the POST endpoint /query_ndvi
 @app.post("/query_ndvi")
 async def get_ndvi(data: QueryData):
