@@ -4,97 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NDVI Query Service</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Roboto', sans-serif;
             background-color: #f4f4f9;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             text-align: center;
         }
         .container {
-            background-color: #fff;
-            max-width: 800px;
+            background-color: #ffffff;
+            max-width: 900px;
             width: 90%;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
             margin: 20px;
         }
         h1 {
-            font-size: 2.5em;
+            font-size: 2.8em;
             margin-bottom: 20px;
-            color: #007bff;
+            color: #333;
         }
         h2 {
-            font-size: 1.8em;
-            color: #451cab;
+            font-size: 2em;
+            color: #555;
             margin-top: 20px;
             margin-bottom: 15px;
         }
         p {
             font-size: 1.2em;
-            color: #000;
-            line-height: 1.6;
+            color: #666;
+            line-height: 1.7;
             margin-bottom: 20px;
         }
         ul {
             list-style-type: none;
             padding: 0;
+            margin: 0 auto;
+            display: inline-block;
             text-align: left;
-            margin: 0;
         }
         ul li {
             font-size: 1.1em;
-            color: #4c27d3;
+            color: #333;
             background-color: #f9f9f9;
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 8px;
             border: 1px solid #ddd;
             transition: background-color 0.3s, box-shadow 0.3s;
         }
         ul li:hover {
-            background-color: #e7e7ff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #e2e2e2;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
         button {
-            padding: 12px 25px;
+            padding: 14px 30px;
             font-size: 16px;
             color: #fff;
-            background-color: #8115c8;
+            background: linear-gradient(90deg, #6f42c1, #d63384);
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            margin-top: 10px;
+            transition: background 0.3s, transform 0.2s;
+            margin: 10px;
         }
         button:hover {
-            background-color: #6e11a4;
+            background: linear-gradient(90deg, #5a2d9b, #b02a6a);
             transform: scale(1.05);
         }
         a {
-            display: inline-block;
-            margin-top: 20px;
-            color: #007bff;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1em;
-            transition: color 0.3s, text-decoration 0.2s;
-        }
-        a:hover {
-            color: #0056b3;
-            text-decoration: underline;
         }
         .buttons {
             margin-bottom: 20px;
         }
-        .buttons a {
-            margin: 0 10px;
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
         }
     </style>
 </head>
@@ -109,14 +109,15 @@
                 <button>Uses in Agriculture</button>
             </a>
         </div>
-        <p>This FastAPI application allows users to query the NDVI (Normalized Difference Vegetation Index) for a given area and time period using Sentinel-2 satellite data from the Microsoft Planetary Computer.</p>
-        
-        <h2>Features</h2>
-        <ul>
-            <li>Query Sentinel-2 data for a specific time range and geographical area.</li>
-            <li>Calculate NDVI using the red and near-infrared (NIR) bands.</li>
-            <li>Return NDVI statistics (mean and standard deviation) for the specified area.</li>
-        </ul>
+        <div class="sub_container">
+            <p>This FastAPI application allows users to query the NDVI (Normalized Difference Vegetation Index) for a given area and time period using Sentinel-2 satellite data from the Microsoft Planetary Computer.</p>
+            <h2>Features</h2>
+            <ul>
+                <li>Query Sentinel-2 data for a specific time range and geographical area.</li>
+                <li>Calculate NDVI using the red and near-infrared (NIR) bands.</li>
+                <li>Return NDVI statistics (mean and standard deviation) for the specified area.</li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
