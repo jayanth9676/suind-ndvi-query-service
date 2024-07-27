@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException  #  FastAPI and HTTPException for creating API and handling errors
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field  #  Pydantic for data validation and schema definition
 from typing import Dict, Any  #  types for type hints
 from sentinel_query import query_sentinel_data, calculate_ndvi  #  functions from sentinel_query.py
