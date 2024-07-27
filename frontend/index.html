@@ -6,40 +6,67 @@
     <title>NDVI Query Service</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
             margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
         h1 {
             text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
         }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
         }
         input, button, textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
         }
         button {
+            background-color: #007bff;
+            color: white;
+            border: none;
             cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 600;
+        }
+        button:hover {
+            background-color: #0056b3;
         }
         pre {
-            background: #f4f4f4;
-            padding: 10px;
+            background: #f8f9fa;
+            padding: 15px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 6px;
             overflow-x: auto;
+            white-space: pre-wrap;
         }
         .spinner {
             display: none;
             margin: 20px auto;
             border: 8px solid #f3f3f3;
             border-radius: 50%;
-            border-top: 8px solid #3498db;
+            border-top: 8px solid #007bff;
             width: 60px;
             height: 60px;
             animation: spin 2s linear infinite;
@@ -51,6 +78,19 @@
         .buttons {
             display: flex;
             justify-content: space-between;
+        }
+        .json-container {
+            background: #f8f9fa;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+        .key {
+            font-weight: bold;
+            color: #333;
+        }
+        .value {
+            color: #555;
         }
     </style>
 </head>
@@ -88,7 +128,7 @@
         document.getElementById('query-form').addEventListener('submit', async (event) => {
             event.preventDefault();
             document.getElementById('loading-spinner').style.display = 'block';
-            document.getElementById('response').textContent = '';
+            document.getElementById('response').innerHTML = '';
 
             const timestamp = document.getElementById('timestamp').value;
             const aoi_geojson = JSON.parse(document.getElementById('aoi_geojson').value);
@@ -107,13 +147,24 @@
                 }
 
                 const result = await response.json();
-                document.getElementById('response').textContent = JSON.stringify(result, null, 2);
+                document.getElementById('response').innerHTML = formatJSON(result);
             } catch (error) {
                 document.getElementById('response').textContent = `Error: ${error.message}`;
             } finally {
                 document.getElementById('loading-spinner').style.display = 'none';
             }
         });
+
+        function formatJSON(json) {
+            let formatted = '<div class="json-container">';
+            for (const key in json) {
+                if (json.hasOwnProperty(key)) {
+                    formatted += `<div><span class="key">${key}:</span> <span class="value">${JSON.stringify(json[key], null, 2)}</span></div>`;
+                }
+            }
+            formatted += '</div>';
+            return formatted;
+        }
     </script>
 </body>
 </html>
