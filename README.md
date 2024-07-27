@@ -19,7 +19,7 @@ This FastAPI application allows users to query the NDVI (Normalized Difference V
 
 ```bash
 git clone https://github.com/your-repo/ndvi-query-service.git
-# cd suind-ndvi-query-service
+cd suind-ndvi-query-service
 ```
 
 ### Build and Run with Docker
