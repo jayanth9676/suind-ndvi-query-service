@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException  #  FastAPI and HTTPException for creating API and handling errors
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field  #  Pydantic for data validation and schema definition
 from typing import Dict, Any  #  types for type hints
@@ -19,9 +20,25 @@ class QueryData(BaseModel):
     timestamp: str = Field(..., example="2024-06-01/2024-07-01")
     aoi_geojson: Dict[str, Any]
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 async def root():
-    return "Welcome to the NDVI Query Service"
+    html_content = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NDVI Query Service</title>
+    </head>
+    <body>
+        <h1>Welcome to the NDVI Query Service</h1>
+        <a href="/frontend/index.html">
+            <button>Go to NDVI Query Form</button>
+        </a>
+    </body>
+    </html>
+    """
+    return HTMLResponse(content=html_content)
 
 # Define the POST endpoint /query_ndvi
 @app.post("/query_ndvi")

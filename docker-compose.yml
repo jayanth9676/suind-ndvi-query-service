@@ -5,4 +5,4 @@ services:
     build: .
     ports:
       - "8000:8000"   # Backend
-      - "5500:5500"   # Frontend
+      # - "5500:5500"   # Frontend
