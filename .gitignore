@@ -1,0 +1,12 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Virtual environments
+suind_coding_task_env/
+
+# # Docker
+# docker-compose.yml
+# Dockerfile
+
+# IDEs
+.vscode
