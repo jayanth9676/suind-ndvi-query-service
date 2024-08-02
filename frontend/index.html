@@ -236,10 +236,10 @@
 
                     const result = await response.json();
                     document.getElementById("response").innerHTML = formatJSON(result);
-                    document.getElementById("error-message").style.display = "none";
+                    // document.getElementById("error-message").style.display = "none";
                 } catch (error) {
-                    document.getElementById("response").style.display = "none";
                     document.getElementById("error-message").textContent = `Error: ${error.message}`;
+                    // document.getElementById("response").style.display = "none";
                 } finally {
                     document.getElementById("loading-spinner").style.display = "none";
                 }
