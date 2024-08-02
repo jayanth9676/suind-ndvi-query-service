@@ -190,11 +190,14 @@
             </form>
             <div class="spinner" id="loading-spinner"></div>
             <pre id="response"></pre>
-            <div class="error" id="error-message"></div>
+            <pre class="error" id="error-message"></pre>
         </div>
     </div>
 
     <script>
+        document.getElementById("response").style.display = "none";
+        document.getElementById("error-message").style.display = "none";
+
         function setDefaultTimestamp() {
             document.getElementById("timestamp").value = "2024-06-01/2024-07-01";
         }
@@ -231,15 +234,18 @@
 
                     if (!response.ok) {
                         const errorData = await response.json();
-                        throw new Error(errorData.detail || `HTTP error! Status: ${response.status}`);
+                        throw new Error(errorData.detail + `, HTTP error! Status: ${response.status}`);
                     }
 
                     const result = await response.json();
                     document.getElementById("response").innerHTML = formatJSON(result);
-                    // document.getElementById("error-message").style.display = "none";
+                    document.getElementById("response").style.display = "block";
+                    document.getElementById("error-message").style.display = "none";
                 } catch (error) {
-                    document.getElementById("error-message").textContent = `Error: ${error.message}`;
-                    // document.getElementById("response").style.display = "none";
+                    document.getElementById("error-message").innerHTML = `Error: ${error.message}`;
+                    document.getElementById("error-message").style.display = "block";
+                    document.getElementById("error-message").style.color = "red";
+                    document.getElementById("response").style.display = "none";
                 } finally {
                     document.getElementById("loading-spinner").style.display = "none";
                 }
