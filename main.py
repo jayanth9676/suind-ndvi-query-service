@@ -32,10 +32,14 @@ async def get_ndvi(data: QueryData):
     logging.info("Received request with timestamp: %s and AOI: %s", data.timestamp, data.aoi_geojson)
     
     # Query Sentinel-2 data URLs
-    asset_hrefs = query_sentinel_data(data.aoi_geojson, data.timestamp)
-    if not asset_hrefs:
-        logging.error("No suitable Sentinel-2 data found for timestamp: %s and AOI: %s", data.timestamp, data.aoi_geojson)
-        raise HTTPException(status_code=404, detail="No suitable Sentinel-2 data found for the given parameters.")
+    try:
+        asset_hrefs = query_sentinel_data(data.aoi_geojson, data.timestamp)
+        # if not asset_hrefs:
+        #     logging.error("No suitable Sentinel-2 data found for timestamp: %s and AOI: %s", data.timestamp, data.aoi_geojson)
+        #     raise HTTPException(status_code=404, detail="No suitable Sentinel-2 data found for the given parameters: %s", str(e))
+    except ValueError as e:
+        logging.error("Error: %s", str(e))
+        raise HTTPException(status_code=404, detail=str(e))
     
     try:
         # Calculate NDVI statistics
