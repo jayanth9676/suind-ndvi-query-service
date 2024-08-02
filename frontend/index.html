@@ -190,6 +190,7 @@
             </form>
             <div class="spinner" id="loading-spinner"></div>
             <pre id="response"></pre>
+            <div class="error" id="error-message"></div>
         </div>
     </div>
 
@@ -209,6 +210,7 @@
                 event.preventDefault();
                 document.getElementById("loading-spinner").style.display = "block";
                 document.getElementById("response").innerHTML = "";
+                document.getElementById("error-message").innerHTML = "";
 
                 const timestamp = document.getElementById("timestamp").value;
                 const aoi_geojson = JSON.parse(
@@ -228,15 +230,16 @@
                     );
 
                     if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
+                        const errorData = await response.json();
+                        throw new Error(errorData.detail || `HTTP error! Status: ${response.status}`);
                     }
 
                     const result = await response.json();
                     document.getElementById("response").innerHTML = formatJSON(result);
+                    document.getElementById("error-message").style.display = "none";
                 } catch (error) {
-                    document.getElementById(
-                        "response"
-                    ).textContent = `Error: ${error.message}`;
+                    document.getElementById("response").style.display = "none";
+                    document.getElementById("error-message").textContent = `Error: ${error.message}`;
                 } finally {
                     document.getElementById("loading-spinner").style.display = "none";
                 }
