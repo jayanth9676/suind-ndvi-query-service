@@ -234,7 +234,7 @@
 
                     if (!response.ok) {
                         const errorData = await response;
-                        throw new Error(errorData.detail + `, HTTP error! Status: ${response.status}`);
+                        throw new Error(`Error: ${errorData}, Error.json: ${errorData.json()} => Error.detail: ${errorData.detail}, HTTP error! Status: ${response.status}`);
                     }
 
                     const result = await response.json();
@@ -242,7 +242,7 @@
                     document.getElementById("response").style.display = "block";
                     document.getElementById("error-message").style.display = "none";
                 } catch (error) {
-                    document.getElementById("error-message").innerHTML = `Error: ${error.message}`;
+                    document.getElementById("error-message").innerHTML = `${error.message}`;
                     document.getElementById("error-message").style.display = "block";
                     document.getElementById("error-message").style.color = "red";
                     document.getElementById("response").style.display = "none";
