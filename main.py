@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException  #  FastAPI and HTTPException for creating API and handling errors
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field  #  Pydantic for data validation and schema definition
 from typing import Dict, Any  #  types for type hints
@@ -39,14 +39,16 @@ async def get_ndvi(data: QueryData):
         #     raise HTTPException(status_code=404, detail="No suitable Sentinel-2 data found for the given parameters: %s", str(e))
     except ValueError as e:
         logging.error("Error: %s", str(e))
-        raise HTTPException(status_code=404, detail=str(e))
+        # raise HTTPException(status_code=404, detail=str(e))
+        return JSONResponse(status_code=404, content={"detail": "No suitable Sentinel-2 data found for the given parameters."})
     
     try:
         # Calculate NDVI statistics
         ndvi_stats = calculate_ndvi(asset_hrefs[0], asset_hrefs[1], data.aoi_geojson)
     except ValueError as e:
         logging.error("Error in calculating NDVI: %s", str(e))
-        raise HTTPException(status_code=500, detail=str(e))
+        # raise HTTPException(status_code=500, detail=str(e))
+        return JSONResponse(status_code=500, content={"detail": str(e)})
     
     # Return NDVI statistics
     return ndvi_stats

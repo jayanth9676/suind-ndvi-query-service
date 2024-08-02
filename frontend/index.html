@@ -234,7 +234,7 @@
 
                     if (!response.ok) {
                         const errorData = await response.json();
-                        throw new Error(`Error: ${JSON.stringify(errorData)}, HTTP error! Status: ${response.status}`);
+                        throw new Error(`Error: ${JSON.stringify(errorData)}, ${errorData.detail}, HTTP error! Status: ${response.status}`);
                     }
 
                     const result = await response.json();
