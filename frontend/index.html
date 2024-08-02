@@ -233,8 +233,8 @@
                     );
 
                     if (!response.ok) {
-                        const errorData = await response;
-                        throw new Error(`Error: ${errorData}, Error.json: ${errorData.json()} => Error.detail: ${errorData.detail}, HTTP error! Status: ${response.status}`);
+                        const errorData = await response.json();
+                        throw new Error(`Error: ${JSON.stringify(errorData)}, HTTP error! Status: ${response.status}`);
                     }
 
                     const result = await response.json();
